@@ -1,14 +1,11 @@
 services:
   - type: web
-    name: mehmedoglu-b2b-api
-    runtime: python
+    name: mehmedoglucigk-fte
+    runtime: docker
     plan: free
-    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --no-input && python manage.py migrate --no-input
-    startCommand: gunicorn mergen_saas.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health/
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.9
       - key: DEBUG
         value: "False"
       - key: SECRET_KEY
@@ -16,7 +13,7 @@ services:
       - key: DATABASE_URL
         sync: false
       - key: ALLOWED_HOSTS
-        value: mehmedoglu-b2b-api.onrender.com,mehmedoglucigk-fte.onrender.com,.onrender.com
+        value: mehmedoglucigk-fte.onrender.com,.onrender.com
       - key: CORS_ORIGINS
         value: https://frontend-black-psi-97.vercel.app,http://localhost:3000,https://localhost
       - key: CSRF_TRUSTED_ORIGINS

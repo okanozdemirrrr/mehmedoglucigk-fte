@@ -1,0 +1,13 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+.git/
+frontend/node_modules/
+frontend/dist/
+frontend/android/
+staticfiles/
+media/
+*.log
+.cursor/

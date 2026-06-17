@@ -1,9 +1,6 @@
 from pathlib import Path
 from decouple import config
-import sentry_sdk
 import dj_database_url
-from sentry_sdk.integrations.django import DjangoIntegration
-from sentry_sdk.integrations.celery import CeleryIntegration
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -75,13 +72,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mergen_saas.wsgi.application'
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL', default='postgresql://neondb_owner:npg_XO3anWR9uwmq@ep-jolly-sun-al2vw699-pooler.c-3.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
-}
+_db_url = config('DATABASE_URL', default='')
+if _db_url:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=_db_url,
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
