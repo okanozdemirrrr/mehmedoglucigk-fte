@@ -14,6 +14,7 @@ const resolveApiBaseUrl = () => {
 
 const api = axios.create({
   baseURL: resolveApiBaseUrl(),
+  timeout: 120000, // Render free tier uyanma süresi
 });
 
 api.interceptors.request.use(config => {
