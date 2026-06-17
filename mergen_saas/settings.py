@@ -6,7 +6,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-this-in-production')
 DEBUG = config('DEBUG', default=True, cast=bool)
+
 ALLOWED_HOSTS = [h.strip() for h in config('ALLOWED_HOSTS', default='localhost,127.0.0.1').split(',') if h.strip()]
+_render_host = config('RENDER_EXTERNAL_HOSTNAME', default='')
+if _render_host and _render_host not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(_render_host)
+if '.onrender.com' not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append('.onrender.com')
 
 # Sentry Monitoring (Production)
 # if not DEBUG:
@@ -128,8 +134,15 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [o.strip() for o in config('CORS_ORIGINS', default='http://localhost:3000,http://127.0.0.1:3000').split(',') if o.strip()]
 
+# Vercel preview/production URL'leri (frontend-black-psi-97.vercel.app vb.)
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r'^https://[\w-]+\.vercel\.app$',
+]
+
 _csrf_origins = config('CSRF_TRUSTED_ORIGINS', default='')
 CSRF_TRUSTED_ORIGINS = [o.strip() for o in _csrf_origins.split(',') if o.strip()] or CORS_ALLOWED_ORIGINS
+if 'https://frontend-black-psi-97.vercel.app' not in CSRF_TRUSTED_ORIGINS:
+    CSRF_TRUSTED_ORIGINS.append('https://frontend-black-psi-97.vercel.app')
 
 # Firebase Cloud Messaging (push bildirimleri)
 FIREBASE_CREDENTIALS_PATH = config('FIREBASE_CREDENTIALS_PATH', default='')
