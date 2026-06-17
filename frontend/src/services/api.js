@@ -6,7 +6,7 @@ const resolveApiBaseUrl = () => {
   }
 
   if (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app')) {
-    return 'https://mehmedoglu-b2b-api.onrender.com/api/';
+    return 'https://mehmedoglucigk-fte.onrender.com/api/';
   }
 
   return 'http://localhost:8000/api/';
