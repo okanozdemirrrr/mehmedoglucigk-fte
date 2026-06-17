@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Mergen B2B</string>
+    <string name="title_activity_main">Mergen B2B</string>
+    <string name="package_name">com.mergen.b2b</string>
+    <string name="custom_url_scheme">com.mergen.b2b</string>
+</resources>

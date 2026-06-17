@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "480419731243",
+    "project_id": "mehmedoglucigkofte",
+    "storage_bucket": "mehmedoglucigkofte.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480419731243:android:5d338df56bafc905a2976e",
+        "android_client_info": {
+          "package_name": "com.mergen.mehmedoglu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwyqQr5s43zZzm7e5c78IT42TwO2WFTOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
